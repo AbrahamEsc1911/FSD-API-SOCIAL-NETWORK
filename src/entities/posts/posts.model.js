@@ -9,7 +9,7 @@ const PostsSchema = new Schema(
         user: {
             type: Schema.Types.ObjectId,
             ref: 'Users',
-            requierd: true,
+            required: true,
         },
         comments: {
             type: Schema.Types.ObjectId,
