@@ -1,7 +1,7 @@
 export const isAdmin = async (req, res, next) => {
     try {
-
-        if (!req.tokenData.role === 'admin') {
+        
+        if (req.tokenData.role !== 'admin') {
             return res.status(400).json(
                 {
                     success: false,

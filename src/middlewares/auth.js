@@ -18,7 +18,7 @@ export const auth = (req, res, next) => {
 
         req.tokenData = {
             id: decode.id,
-            roles: decode.role,
+            role: decode.role,
             email: decode.email
         }
 
