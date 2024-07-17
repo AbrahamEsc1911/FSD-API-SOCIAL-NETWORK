@@ -96,7 +96,7 @@ export const login = async (req, res) => {
 
         const token = jwt.sign(
             {
-                id: user.id,
+                id: user._id,
                 role: user.roles,
                 email: user.email
             },
@@ -113,7 +113,6 @@ export const login = async (req, res) => {
                 data: token
             }
         )
-
     } catch (error) {
         res.status(500).json(
             {
@@ -137,7 +136,6 @@ export const getAllUsers = async (req, res) => {
                 data: allUses
             }
         )
-
     } catch (error) {
         res.status(500).json(
             {
@@ -147,4 +145,31 @@ export const getAllUsers = async (req, res) => {
             }
         )
     }
+}
+
+export const userProfile = async (req, res) => {
+    try {
+        
+        const id = req.tokenData.id
+
+        const user = await Users.findOne({ _id: id }).select('_id name email is_active createdAt')
+
+        res.json(
+            {
+                success: true,
+                message: 'User profile',
+                data: user
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: 'Error retriving User profile',
+                error: error.message
+            }
+        )
+    }
+
 }

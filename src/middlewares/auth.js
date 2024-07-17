@@ -21,7 +21,7 @@ export const auth = (req, res, next) => {
             roles: decode.role,
             email: decode.email
         }
-        console.log(req.tokenData.roles)
+        
         next();
         
     } catch (error) {
