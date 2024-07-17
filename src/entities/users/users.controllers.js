@@ -1,10 +1,11 @@
 import bcrypt from 'bcrypt'
 import Users from './users.model.js'
+import jwt from 'jsonwebtoken'
 
 export const register = async (req, res) => {
     try {
 
-        const { email, password } = req.body
+        const { name, email, password } = req.body
 
         if (!email || !password) {
             return res.status(400).json(
@@ -28,6 +29,7 @@ export const register = async (req, res) => {
 
         const newUser = await Users.create(
             {
+                name: name,
                 email: email,
                 password: passhashed,
             }
@@ -46,6 +48,101 @@ export const register = async (req, res) => {
             {
                 success: false,
                 message: 'Coulnt create a new user',
+                error: error.message
+            }
+        )
+    }
+}
+
+export const login = async (req, res) => {
+    try {
+
+        const { email, password } = req.body
+
+        if (!email || !password) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'email and password are requiered',
+                }
+            )
+        }
+
+        const user = await Users.findOne(
+            {
+                email: email
+            }
+        )
+
+        if (!user) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'Email or password invalid'
+                }
+            )
+        }
+
+        const passCompared = bcrypt.compareSync(password, user.password)
+
+        if (!passCompared) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'Email or password invalid'
+                }
+            )
+        }
+
+        const token = jwt.sign(
+            {
+                id: user.id,
+                role: user.roles,
+                email: user.email
+            },
+            process.env.SECRET_KEY,
+            {
+                expiresIn: '3h'
+            }
+        )
+
+        res.json(
+            {
+                success: true,
+                message: 'User logged',
+                data: token
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: 'Error login user',
+                error: error.message
+            }
+        )
+    }
+}
+
+export const getAllUsers = async (req, res) => {
+    try {
+
+        const allUses = await Users.find().select('email name roles createdAt')
+
+        res.json(
+            {
+                success: true,
+                message: 'showing all users',
+                data: allUses
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: true,
+                message: 'Error retriving all users',
                 error: error.message
             }
         )
