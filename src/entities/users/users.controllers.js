@@ -149,7 +149,7 @@ export const getAllUsers = async (req, res) => {
 
 export const userProfile = async (req, res) => {
     try {
-        
+
         const id = req.tokenData.id
 
         const user = await Users.findOne({ _id: id }).select('_id name email is_active createdAt')
@@ -172,4 +172,38 @@ export const userProfile = async (req, res) => {
         )
     }
 
+}
+
+export const getUserByEmail = async (req, res) => {
+    try {
+
+        const email = req.query.email
+
+        const user = await Users.findOne({ email: email }).select('_id name email is_Active createdAt')
+
+        if (!user) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: 'User not found'
+                }
+            )
+        }
+
+        res.json(
+            {
+                success: true,
+                message: 'User found',
+                data: user
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: 'Error retriving user by email'
+            }
+        )
+    }
 }
