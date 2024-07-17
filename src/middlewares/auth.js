@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken'
 
 export const auth = (req, res, next) => {
     try {
-       
-        if(!req.headers.authorization){
+
+        if (!req.headers.authorization) {
             res.status(401).json(
                 {
                     success: false,
@@ -13,7 +13,7 @@ export const auth = (req, res, next) => {
         }
 
         const token = req.headers.authorization.split(' ')[1];
-       
+
         const decode = jwt.verify(token, process.env.SECRET_KEY)
 
         req.tokenData = {
@@ -21,9 +21,9 @@ export const auth = (req, res, next) => {
             roles: decode.role,
             email: decode.email
         }
-        
+
         next();
-        
+
     } catch (error) {
         res.status(500).json(
             {
