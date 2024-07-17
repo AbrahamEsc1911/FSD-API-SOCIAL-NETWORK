@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken'
 
 export const register = async (req, res) => {
     try {
-
         const { name, email, password } = req.body
 
         if (!email || !password) {
@@ -56,7 +55,6 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-
         const { email, password } = req.body
 
         if (!email || !password) {
@@ -149,7 +147,6 @@ export const getAllUsers = async (req, res) => {
 
 export const userProfile = async (req, res) => {
     try {
-
         const id = req.tokenData.id
 
         const user = await Users.findOne({ _id: id }).select('_id name email is_active createdAt')
@@ -176,7 +173,6 @@ export const userProfile = async (req, res) => {
 
 export const getUserByEmail = async (req, res) => {
     try {
-
         const email = req.query.email
 
         const user = await Users.findOne({ email: email }).select('_id name email is_Active createdAt')
@@ -203,6 +199,77 @@ export const getUserByEmail = async (req, res) => {
             {
                 success: false,
                 message: 'Error retriving user by email'
+            }
+        )
+    }
+}
+
+export const updateUser = async (req, res) => {
+    try {
+        const id = req.tokenData.id
+        const { name, email, password } = req.body
+        let passhashed
+
+        if ((password && password.length < 8) || (password && password.length > 12)) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'password has to be between 8 and 12 characters'
+                }
+            )
+        }
+
+        if (password) {
+            passhashed = bcrypt.hashSync(password, parseInt(process.env.SALT_ROUNDS))
+        }
+
+        const user = await Users.findOne(
+            {
+                _id: id
+            },
+        )
+
+        if (user.name === name) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: `name '${name}' already exist`
+                }
+            )
+        } else if (user.email === email) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: `email '${email}' already exist`
+                }
+            )
+        }
+
+        const userUpdated = await Users.updateOne(
+            {
+                _id: id
+            },
+            {
+                name: name,
+                email: email,
+                password: passhashed
+            }
+        )
+
+        res.json(
+            {
+                success: true,
+                message: 'User data updated',
+                data: userUpdated
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: 'Error updating user',
+                error: error.message
             }
         )
     }
