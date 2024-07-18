@@ -222,5 +222,47 @@ export const getAllPosts = async (req, res) => {
 }
 
 export const getPostById = async (req, res) => {
-    
+    try {
+
+        const postId = req.params.id
+
+        if (!isValidObjectId(postId)) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'Post id invalid'
+                }
+            )
+        }
+
+        const post = await Posts.findById(postId)
+            .select('post_message createdAt')
+            .populate('user', 'email')
+
+        if (!post) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: 'Post not found'
+                }
+            )
+        }
+
+        res.json(
+            {
+                success: true,
+                message: 'Post',
+                data: post
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: 'Error retriving post',
+                error: error.message
+            }
+        )
+    }
 }
