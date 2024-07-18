@@ -344,3 +344,7 @@ export const likeDislike = async (req, res) => {
         )
     }
 }
+
+export const timelineUsers = async (req, res) => {
+    
+}

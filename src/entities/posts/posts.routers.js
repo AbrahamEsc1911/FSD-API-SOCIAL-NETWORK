@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { auth } from "../../middlewares/auth.js";
-import { createPost, deletePost, getAllPosts, getPostById, getUserPosts, likeDislike, updatePost } from "./posts.controller.js";
+import { createPost, deletePost, getAllPosts, getPostById, getUserPosts, likeDislike, timelineUsers, updatePost } from "./posts.controller.js";
 
 const router = Router()
 
@@ -11,5 +11,6 @@ router.get('/own', auth, getUserPosts)
 router.get('/', getAllPosts)
 router.get('/:id', getPostById)
 router.put('/like/:id', auth, likeDislike)
+router.get('/timeline', auth, timelineUsers)
 
 export { router }
