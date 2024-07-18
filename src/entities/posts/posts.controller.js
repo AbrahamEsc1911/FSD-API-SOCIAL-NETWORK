@@ -1,5 +1,6 @@
 import { isValidObjectId } from "mongoose"
 import Posts from "./posts.model.js"
+import Users from "../users/users.model.js"
 
 export const createPost = async (req, res) => {
     try {
@@ -16,12 +17,17 @@ export const createPost = async (req, res) => {
             )
         }
 
+        const user = await Users.findById(id)
+
         const newPost = await Posts.create(
             {
                 post_message: message,
                 user: id
             }
         )
+
+        user.posts.push(newPost._id)
+        await user.save()
 
         res.json(
             {
@@ -35,7 +41,8 @@ export const createPost = async (req, res) => {
         res.status(500).json(
             {
                 success: false,
-                message: 'Error creating a new post'
+                message: 'Error creating a new post',
+                error: error.message
             }
         )
     }
@@ -49,7 +56,7 @@ export const deletePost = async (req, res) => {
             return res.status(400).json(
                 {
                     success: false,
-                    message: 'Post Id is not valid'
+                    message: 'Post Id is not valid',
                 }
             )
         }
@@ -149,5 +156,17 @@ export const updatePost = async (req, res) => {
 }
 
 export const getUserPosts = async (req, res) => {
-    
+    try {
+        
+
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                succes: false,
+                message: 'Error retriving user posts',
+                error: error.message
+            }
+        )
+    }
 }
