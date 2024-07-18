@@ -24,14 +24,18 @@ const UserSchema = new Schema(
             type: Boolean,
             default: true,
         },
-        posts: {
-            type: Schema.Types.ObjectId,
-            ref: 'Posts'
-        },
-        followers: {
-            type: Schema.Types.ObjectId,
-            ref: 'Users'
-        }
+        posts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Posts'
+            }
+        ],
+        followers: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Users'
+            }
+        ]
     },
     {
         timestamps: true,

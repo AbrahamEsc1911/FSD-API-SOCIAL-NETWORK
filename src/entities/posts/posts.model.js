@@ -11,14 +11,18 @@ const PostsSchema = new Schema(
             ref: 'Users',
             required: true,
         },
-        comments: {
-            type: Schema.Types.ObjectId,
-            ref: 'Comments'
-        },
-        likes: {
-            type: Schema.Types.ObjectId,
-            ref: 'Users'
-        }
+        comments: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Comments'
+            }
+        ],
+        likes: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Users'
+            }
+        ]
     },
     {
         timestamps: true,
