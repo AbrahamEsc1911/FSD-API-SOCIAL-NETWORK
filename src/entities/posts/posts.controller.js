@@ -50,6 +50,7 @@ export const createPost = async (req, res) => {
 
 export const deletePost = async (req, res) => {
     try {
+        const id = req.tokenData.id
         const postId = req.params.id
 
         if (!isValidObjectId(postId)) {
@@ -75,6 +76,18 @@ export const deletePost = async (req, res) => {
                 }
             )
         }
+
+        await Users.findByIdAndUpdate(
+            id,
+            {
+                $pull: {
+                    posts: postId
+                }
+            },
+            {
+                new: true,
+            }
+        )
 
         res.json(
             {
