@@ -174,8 +174,8 @@ export const getUserPosts = async (req, res) => {
         const id = req.tokenData.id
 
         const userPosts = await Users.findById(id)
-        .select('name email posts')
-        .populate('posts', 'post_message')
+            .select('name email posts')
+            .populate('posts', 'post_message')
 
         res.json(
             {
@@ -199,7 +199,8 @@ export const getUserPosts = async (req, res) => {
 export const getAllPosts = async (req, res) => {
     try {
         const allPosts = await Posts.find()
-      
+            .select('post_message createdAt')
+            .populate('user', 'email')
 
         res.json(
             {
@@ -208,7 +209,7 @@ export const getAllPosts = async (req, res) => {
                 data: allPosts
             }
         )
-        
+
     } catch (error) {
         res.status(500).json(
             {
