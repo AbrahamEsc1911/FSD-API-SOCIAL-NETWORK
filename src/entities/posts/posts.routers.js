@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { auth } from "../../middlewares/auth.js";
-import { createPost } from "./posts.controller.js";
+import { createPost, deletePost } from "./posts.controller.js";
 
 const router = Router()
 
