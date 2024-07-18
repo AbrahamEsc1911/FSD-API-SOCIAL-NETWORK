@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteUser, getAllUsers, getPostByUserId, getUserByEmail, login, register, updateRole, updateUser, userProfile } from "./users.controllers.js";
+import { deleteUser, followUnfollow, getAllUsers, getPostByUserId, getUserByEmail, login, register, updateRole, updateUser, userProfile } from "./users.controllers.js";
 import { auth } from "../../middlewares/auth.js";
 import { isAdmin } from "../../middlewares/isAdmin.js";
 
@@ -14,5 +14,6 @@ router.put('/profile', auth, updateUser)
 router.put('/:id/role', auth, isAdmin, updateRole)
 router.delete('/:id', auth, isAdmin, deleteUser)
 router.get('/posts/:userid', getPostByUserId)
+router.put('/follow/:userId', auth, followUnfollow)
 
 export {router}

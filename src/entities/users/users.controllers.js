@@ -437,3 +437,7 @@ export const getPostByUserId = async (req, res) => {
         )
     }
 }
+
+export const followUnfollow = async (req, res) => {
+    
+}
