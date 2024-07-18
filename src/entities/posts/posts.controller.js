@@ -87,3 +87,7 @@ export const deletePost = async (req, res) => {
         )
     }
 }
+
+export const updatePost = async (req, res) => {
+
+}
