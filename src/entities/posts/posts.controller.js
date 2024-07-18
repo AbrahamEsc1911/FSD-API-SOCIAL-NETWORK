@@ -195,3 +195,7 @@ export const getUserPosts = async (req, res) => {
         )
     }
 }
+
+export const getAllPosts = async (req, res) => {
+    
+}
