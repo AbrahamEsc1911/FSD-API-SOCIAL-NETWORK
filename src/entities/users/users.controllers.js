@@ -394,7 +394,6 @@ export const deleteUser = async (req, res) => {
 
 export const getPostByUserId = async (req, res) => {
     try {
-
         const userId = req.params.userid
 
         if (!isValidObjectId(userId)) {
@@ -439,5 +438,80 @@ export const getPostByUserId = async (req, res) => {
 }
 
 export const followUnfollow = async (req, res) => {
-    
+    try {
+        const id = req.tokenData.id
+        const userId = req.params.userId
+
+        if (!isValidObjectId(userId)) {
+            return res.status(400).json(
+                {
+                    succes: false,
+                    message: 'User id is not valid'
+                }
+            )
+        }
+
+        const user = await Users.findById(userId)
+            .select('_id name email followers')
+
+        if (!user) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: 'user to follow not found'
+                }
+            )
+        }
+
+        if ((user._id).toString() === id) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'You cant follow yourself'
+                }
+            )
+        }
+
+        if (!user.followers.includes(id)) {
+            user.followers.push(id)
+            await user.save()
+
+            return res.json(
+                {
+                    success: true,
+                    message: 'You follow now this user',
+                    data: user
+                }
+            )
+        }
+
+        await Users.findByIdAndUpdate(
+            userId,
+            {
+                $pull: {
+                    followers: id
+                }
+            },
+            {
+                new: true,
+            }
+        )
+
+        res.json(
+            {
+                success: true,
+                message: 'You just unfollowed this user',
+                data: user
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: 'Error following user',
+                error: error.message
+            }
+        )
+    }
 }
