@@ -220,3 +220,7 @@ export const getAllPosts = async (req, res) => {
         )
     }
 }
+
+export const getPostById = async (req, res) => {
+    
+}
