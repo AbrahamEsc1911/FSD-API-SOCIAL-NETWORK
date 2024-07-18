@@ -89,5 +89,61 @@ export const deletePost = async (req, res) => {
 }
 
 export const updatePost = async (req, res) => {
+    try {
+        const id = req.params.id
+        const message = req.body.message
 
+        if (!isValidObjectId(id)) {
+            return res.status(400).json(
+                {
+                    succes: false,
+                    message: 'Post id is not valid'
+                }
+            )
+        }
+
+        if (!message) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'New message are requiered'
+                }
+            )
+        }
+
+        const updatedPost = await Posts.updateOne(
+            {
+                _id: id
+            },
+            {
+                post_message: message
+            }
+        )
+
+        if (!updatedPost) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: 'Any post with that id found to update'
+                }
+            )
+        }
+
+        res.json(
+            {
+                success: true,
+                message: 'Post updated',
+                data: updatedPost
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: 'Error updating post',
+                error: error.message
+            }
+        )
+    }
 }
