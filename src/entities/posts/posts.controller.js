@@ -202,6 +202,15 @@ export const getAllPosts = async (req, res) => {
             .select('post_message createdAt')
             .populate('user', 'email')
 
+        if(!allPosts) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: 'Any post yet'
+                }
+            )
+        }
+        
         res.json(
             {
                 success: true,
