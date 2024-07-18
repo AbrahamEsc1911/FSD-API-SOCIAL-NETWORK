@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { auth } from "../../middlewares/auth.js";
-import { createPost, deletePost, getAllPosts, getPostById, getUserPosts, updatePost } from "./posts.controller.js";
+import { createPost, deletePost, getAllPosts, getPostById, getUserPosts, likeDislike, updatePost } from "./posts.controller.js";
 
 const router = Router()
 
@@ -10,5 +10,6 @@ router.put('/:id', auth, updatePost)
 router.get('/own', auth, getUserPosts)
 router.get('/', getAllPosts)
 router.get('/:id', getPostById)
+router.put('/like/:id', likeDislike)
 
 export { router }

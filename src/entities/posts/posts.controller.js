@@ -275,3 +275,7 @@ export const getPostById = async (req, res) => {
         )
     }
 }
+
+export const likeDislike = async (req, res) => {
+
+}
