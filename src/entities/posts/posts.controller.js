@@ -170,8 +170,20 @@ export const updatePost = async (req, res) => {
 
 export const getUserPosts = async (req, res) => {
     try {
-        
 
+        const id = req.tokenData.id
+
+        const userPosts = await Users.findById(id)
+        .select('name email posts')
+        .populate('posts', 'post_message')
+
+        res.json(
+            {
+                success: true,
+                message: 'All post retriving',
+                data: userPosts
+            }
+        )
 
     } catch (error) {
         res.status(500).json(
