@@ -13,6 +13,6 @@ router.get('/profile', auth, userProfile)
 router.put('/profile', auth, updateUser)
 router.put('/:id/role', auth, isAdmin, updateRole)
 router.delete('/:id', auth, isAdmin, deleteUser)
-router.get('/post/:user-id', getPostByUserId)
+router.get('/posts/:userid', getPostByUserId)
 
 export {router}

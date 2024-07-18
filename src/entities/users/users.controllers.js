@@ -349,7 +349,7 @@ export const deleteUser = async (req, res) => {
     try {
         const id = req.params.id
 
-        if(!isValidObjectId(id)) {
+        if (!isValidObjectId(id)) {
             return res.status(400).json(
                 {
                     success: false,
@@ -364,7 +364,7 @@ export const deleteUser = async (req, res) => {
             }
         )
 
-        if(userDeleted.deletedCount === 0){
+        if (userDeleted.deletedCount === 0) {
             return res.status(404).json(
                 {
                     success: false,
@@ -392,7 +392,48 @@ export const deleteUser = async (req, res) => {
     }
 }
 
-
 export const getPostByUserId = async (req, res) => {
-    
+    try {
+
+        const userId = req.params.userid
+
+        if (!isValidObjectId(userId)) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'User Id is not valid'
+                }
+            )
+        }
+
+        const userPosts = await Users.findById(userId)
+            .select('email')
+            .populate('posts', 'post_message createdAt')
+
+        if (!userPosts) {
+            return res.status(404).json(
+                {
+                    success: true,
+                    message: 'User doesnt exists'
+                }
+            )
+        }
+
+        res.json(
+            {
+                success: true,
+                message: 'User posts',
+                data: userPosts
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: 'Error retriving post by user Id',
+                error: error.message
+            }
+        )
+    }
 }
