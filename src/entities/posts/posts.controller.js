@@ -346,5 +346,37 @@ export const likeDislike = async (req, res) => {
 }
 
 export const timelineUsers = async (req, res) => {
-    
+    try {
+        const id = req.tokenData.id
+      
+        const followersPosts = await Users.findById(id)
+            .select('name email followers')
+            .populate(
+                {
+                    path: 'followers',
+                    select: 'name email',
+                    populate: {
+                        path: 'posts',
+                        select: 'post_message comments likes createdAt'
+                    }
+                }
+            )
+
+        res.json(
+            {
+                succes: true,
+                message: 'Timeline of your followers',
+                data: followersPosts
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: 'Error retriving users posts',
+                error: error.message
+            }
+        )
+    }
 }

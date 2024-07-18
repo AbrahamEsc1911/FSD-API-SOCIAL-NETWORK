@@ -9,8 +9,9 @@ router.delete('/:id', auth, deletePost)
 router.put('/:id', auth, updatePost)
 router.get('/own', auth, getUserPosts)
 router.get('/', getAllPosts)
+router.get('/timeline', auth, timelineUsers)
 router.get('/:id', getPostById)
 router.put('/like/:id', auth, likeDislike)
-router.get('/timeline', auth, timelineUsers)
+
 
 export { router }
