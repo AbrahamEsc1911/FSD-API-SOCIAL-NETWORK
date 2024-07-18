@@ -10,6 +10,6 @@ router.put('/:id', auth, updatePost)
 router.get('/own', auth, getUserPosts)
 router.get('/', getAllPosts)
 router.get('/:id', getPostById)
-router.put('/like/:id', likeDislike)
+router.put('/like/:id', auth, likeDislike)
 
 export { router }

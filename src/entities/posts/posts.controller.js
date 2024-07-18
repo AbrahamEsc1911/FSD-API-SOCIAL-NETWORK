@@ -277,5 +277,70 @@ export const getPostById = async (req, res) => {
 }
 
 export const likeDislike = async (req, res) => {
+    try {
+        const id = req.tokenData.id
+        const postId = req.params.id
 
+        if (!isValidObjectId(postId)) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'Post id is invalid'
+                }
+            )
+        }
+
+        const post = await Posts.findById(postId)
+
+        if (!post) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: 'post not found'
+                }
+            )
+        }
+
+        if (!post.likes.includes(id)) {
+            post.likes.push(id)
+            await post.save()
+
+            return res.json(
+                {
+                    success: true,
+                    message: 'you like this post',
+                    data: post
+                }
+            )
+        }
+
+        await Posts.findByIdAndUpdate(
+            postId,
+            {
+                $pull: {
+                    likes: id
+                },
+            },
+            {
+                new: true
+            }
+        )
+
+        res.json(
+            {
+                succes: true,
+                message: 'you dislike this post',
+                data: post
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: 'Error with like or Dislike',
+                error: error.message
+            }
+        )
+    }
 }
