@@ -147,3 +147,7 @@ export const updatePost = async (req, res) => {
         )
     }
 }
+
+export const getUserPosts = async (req, res) => {
+    
+}
