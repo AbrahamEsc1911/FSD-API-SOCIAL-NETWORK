@@ -197,5 +197,25 @@ export const getUserPosts = async (req, res) => {
 }
 
 export const getAllPosts = async (req, res) => {
-    
+    try {
+        const allPosts = await Posts.find()
+      
+
+        res.json(
+            {
+                success: true,
+                message: 'All posts retrived',
+                data: allPosts
+            }
+        )
+        
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: true,
+                message: 'Error retriving all posts',
+                error: error.message
+            }
+        )
+    }
 }
