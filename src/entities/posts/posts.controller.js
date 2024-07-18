@@ -202,7 +202,7 @@ export const getAllPosts = async (req, res) => {
             .select('post_message createdAt')
             .populate('user', 'email')
 
-        if(!allPosts) {
+        if (!allPosts) {
             return res.status(404).json(
                 {
                     success: false,
@@ -210,7 +210,7 @@ export const getAllPosts = async (req, res) => {
                 }
             )
         }
-        
+
         res.json(
             {
                 success: true,

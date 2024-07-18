@@ -11,5 +11,4 @@ router.get('/own', auth, getUserPosts)
 router.get('/', getAllPosts)
 router.get('/:id', getPostById)
 
-
 export { router }

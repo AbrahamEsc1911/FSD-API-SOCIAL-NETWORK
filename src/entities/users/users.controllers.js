@@ -391,3 +391,8 @@ export const deleteUser = async (req, res) => {
         )
     }
 }
+
+
+export const getPostByUserId = async (req, res) => {
+    
+}
