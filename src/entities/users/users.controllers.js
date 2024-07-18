@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt'
 import Users from './users.model.js'
 import jwt from 'jsonwebtoken'
+import { isValidObjectId } from 'mongoose'
 
 export const register = async (req, res) => {
     try {
@@ -269,6 +270,76 @@ export const updateUser = async (req, res) => {
             {
                 success: false,
                 message: 'Error updating user',
+                error: error.message
+            }
+        )
+    }
+}
+
+export const updateRole = async (req, res) => {
+    try {
+
+        const id = req.params.id
+        const role = req.body.roles
+
+        if (!isValidObjectId(id)) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'format of user Id is incorrect'
+                }
+            )
+        }
+
+        if (!role) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'role are requiered'
+                }
+            )
+        }
+
+        if (role !== 'user' && role !== 'admin') {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'that role doesnt exist'
+                }
+            )
+        }
+
+        const user = await Users.updateOne(
+            {
+                _id: id
+            },
+            {
+                roles: role
+            }
+        )
+
+        if (!user) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: 'that user doesnt exist'
+                }
+            )
+        }
+
+        res.json(
+            {
+                success: true,
+                message: `Role ${role} updated`,
+                data: user
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: true,
+                message: 'Error updating role',
                 error: error.message
             }
         )
