@@ -12,6 +12,6 @@ router.get('/filter', auth, isAdmin, getUserByEmail)
 router.get('/profile', auth, userProfile)
 router.put('/profile', auth, updateUser)
 router.put('/:id/role', auth, isAdmin, updateRole)
-router.delete(':id', auth, isAdmin, deleteUser)
+router.delete('/:id', auth, isAdmin, deleteUser)
 
 export {router}

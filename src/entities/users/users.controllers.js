@@ -278,7 +278,6 @@ export const updateUser = async (req, res) => {
 
 export const updateRole = async (req, res) => {
     try {
-
         const id = req.params.id
         const role = req.body.roles
 
@@ -347,5 +346,48 @@ export const updateRole = async (req, res) => {
 }
 
 export const deleteUser = async (req, res) => {
-    
+    try {
+        const id = req.params.id
+
+        if(!isValidObjectId(id)) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'User Id is not valid'
+                }
+            )
+        }
+
+        const userDeleted = await Users.deleteOne(
+            {
+                _id: id
+            }
+        )
+
+        if(userDeleted.deletedCount === 0){
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: 'nothing to delete'
+                }
+            )
+        }
+
+        res.json(
+            {
+                success: true,
+                message: 'User deleted',
+                data: userDeleted
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: 'Error deleting user',
+                error: error.message
+            }
+        )
+    }
 }
