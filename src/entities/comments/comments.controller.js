@@ -203,3 +203,7 @@ export const deleteComment = async (req, res) => {
         )
     }
 }
+
+export const getAllUserComments = async (req, res) => {
+    
+}
