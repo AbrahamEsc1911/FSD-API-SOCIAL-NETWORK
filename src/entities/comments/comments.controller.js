@@ -154,7 +154,7 @@ export const deleteComment = async (req, res) => {
             return res.status(400).json(
                 {
                     success: false,
-                    message: 'This comment is not yours'
+                    message: 'This comment is not yours or doesnt exists'
                 }
             )
         }
@@ -163,6 +163,18 @@ export const deleteComment = async (req, res) => {
 
         await Users.findByIdAndUpdate(
             id,
+            {
+                $pull: {
+                    comments: commentId
+                }
+            },
+            {
+                new: true,
+            }
+        )
+
+        await Posts.findByIdAndUpdate(
+            deletedComment.post,
             {
                 $pull: {
                     comments: commentId
