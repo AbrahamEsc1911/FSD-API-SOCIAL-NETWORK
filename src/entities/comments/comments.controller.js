@@ -205,5 +205,28 @@ export const deleteComment = async (req, res) => {
 }
 
 export const getAllUserComments = async (req, res) => {
-    
+    try {
+        const id = req.tokenData.id
+
+        const user = await Users.findById(id)
+            .select('name email')
+            .populate('comments', 'message createdAt')
+
+        res.json(
+            {
+                success: true,
+                message: 'All user comments',
+                data: user
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                succcess: false,
+                message: 'Error retriving all user comments',
+                error: error.message
+            }
+        )
+    }
 }
