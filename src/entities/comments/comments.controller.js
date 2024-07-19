@@ -75,8 +75,61 @@ export const createComment = async (req, res) => {
 
 export const updateComment = async (req, res) => {
     try {
-        
+        const id = req.tokenData.id
+        const commentId = req.params.commentId
+        const comment = req.body.comment
+
+        if (!isValidObjectId(commentId)) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'Comment Id is not valid'
+                }
+            )
+        }
+
+        if (!comment) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'New comment are requiered'
+                }
+            )
+        }
+
+        const user = await Users.findById(id)
+
+        if (!user.comments.includes(commentId)) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'Comments you are trying to edit is not yours or doesnt exist'
+                }
+            )
+        }
+
+        const commenUpdated = await Comments.findByIdAndUpdate(
+            commentId,
+            {
+                message: comment
+            }
+        )
+
+        res.json(
+            {
+                success: true,
+                message: 'Comment updated successfully',
+                data: commenUpdated
+            }
+        )
+
     } catch (error) {
-        
+        res.status(500).json(
+            {
+                success: false,
+                message: 'Error updating comments',
+                error: error.message
+            }
+        )
     }
 }
