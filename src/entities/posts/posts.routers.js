@@ -13,5 +13,4 @@ router.get('/timeline', auth, timelineUsers)
 router.get('/:id', getPostById)
 router.put('/like/:id', auth, likeDislike)
 
-
 export { router }

@@ -246,7 +246,9 @@ export const getPostById = async (req, res) => {
 
         const post = await Posts.findById(postId)
             .select('post_message createdAt')
-            .populate('user', 'email')
+            .populate('user', 'name email')
+            .populate('comments', 'message createdAt')
+            .populate('likes', 'name email')
 
         if (!post) {
             return res.status(404).json(
