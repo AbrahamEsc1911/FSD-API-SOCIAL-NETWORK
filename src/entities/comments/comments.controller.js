@@ -6,7 +6,7 @@ import Users from "../users/users.model.js"
 export const createComment = async (req, res) => {
     try {
         const id = req.tokenData.id
-        const postid = req.params.postid
+        const postid = req.params.postId
         const comment = req.body.comment
 
         if (!isValidObjectId(postid)) {
@@ -70,5 +70,13 @@ export const createComment = async (req, res) => {
                 error: error.message
             }
         )
+    }
+}
+
+export const updateComment = async (req, res) => {
+    try {
+        
+    } catch (error) {
+        
     }
 }
