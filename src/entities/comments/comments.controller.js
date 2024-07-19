@@ -136,8 +136,58 @@ export const updateComment = async (req, res) => {
 
 export const deleteComment = async (req, res) => {
     try {
-        
+        const id = req.tokenData.id
+        const commentId = req.params.commentId
+
+        if (!isValidObjectId(commentId)) {
+            return res.status(400).json(
+                {
+                    succes: false,
+                    message: 'Comment id is not valid'
+                }
+            )
+        }
+
+        const user = await Users.findById(id)
+
+        if (!user.comments.includes(commentId)) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: 'This comment is not yours'
+                }
+            )
+        }
+
+        const deletedComment = await Comments.findByIdAndDelete(commentId)
+
+        await Users.findByIdAndUpdate(
+            id,
+            {
+                $pull: {
+                    comments: commentId
+                }
+            },
+            {
+                new: true,
+            }
+        )
+
+        res.json(
+            {
+                success: true,
+                message: 'Comment deleted successfully',
+                data: deletedComment
+            }
+        )
+
     } catch (error) {
-        
+        res.status(500).json(
+            {
+                success: false,
+                message: 'Error deleting comments',
+                error: error.message
+            }
+        )
     }
 }
