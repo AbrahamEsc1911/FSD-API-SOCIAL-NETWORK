@@ -16,10 +16,6 @@ const CommentsSchema = new Schema(
             ref: 'Users',
             required: true,
         },
-        likes: {
-            type: Schema.Types.ObjectId,
-            ref: 'Users',
-        }
     },
     {
         timestamps: true,
