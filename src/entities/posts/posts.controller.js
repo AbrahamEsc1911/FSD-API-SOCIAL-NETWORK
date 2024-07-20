@@ -350,7 +350,7 @@ export const likeDislike = async (req, res) => {
 export const timelineUsers = async (req, res) => {
     try {
         const id = req.tokenData.id
-      
+
         const followersPosts = await Users.findById(id)
             .select('name email followers')
             .populate(
