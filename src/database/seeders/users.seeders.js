@@ -92,5 +92,3 @@ export const usersSeaders = async () => {
 
     }
 }
-
-usersSeaders()
