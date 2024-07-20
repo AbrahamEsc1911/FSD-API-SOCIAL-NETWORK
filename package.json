@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js",
-    "db:seed": "node ./src/database/seeders/posts.seeders.js",
+    "db:seed": "node ./src/database/seeders/comments.seeders.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
