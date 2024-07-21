@@ -17,8 +17,8 @@ export const usersSeaders = async () => {
             },
             {
                 _id: '669bd63f721191eae6091051',
-                name: 'carlos',
-                email: 'carlos@carlos.com',
+                name: 'user',
+                email: 'user@user.com',
                 password: '12345678',
                 roles: 'user',
                 posts: ['669bd63f721191eae6091059', '669bd63f721191eae609105a'],
