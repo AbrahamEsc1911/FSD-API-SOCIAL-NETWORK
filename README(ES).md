@@ -95,12 +95,12 @@ Puedes acceder al deploy de esta API en:
 - <details>
   <summary>(Opcional) Pasos para configurar y ejecutar MongoDB en Docker</summary>
 
-  1. Hacer un pull de la imagen de MongoDB
+  - Hacer un pull de la imagen de MongoDB
      ```bash
      docker pull mongo
      ```
 
-  2. Crear un contenedor de MongoDB
+  - Crear un contenedor de MongoDB
      Personaliza los datos como:
      - `--name` (nombre del contenedor)
      - `-p ...:27017` (puerto)
@@ -111,21 +111,137 @@ Puedes acceder al deploy de esta API en:
      docker run -d -p 27017:27017 --name nombre_del_contenedor -v mongo_data:/data/db -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=tu_password mongo:latest
      ```
 
-  3. Verificar si el contenedor está en ejecución
+  - Verificar si el contenedor está en ejecución
      ```bash
      docker ps
      ```
-  4. Si el contenedor no está en ejecución, iniciarlo
+  - Si el contenedor no está en ejecución, iniciarlo
      ```bash
      docker start nombre_del_contenedor
      ```
 </details>
 
 4. Ejecutar los seeders para sembrar los multiples colleciones y documentos en la Base de Dados
-  ```bash
-  npm run db:seed 
-  ```
+   ```bash
+    npm run db:seed 
+    ```
 5. Correr el servidor
-  ```bash
-  npm run dev
-  ``` 
+   ```bash
+   npm run dev
+   ``` 
+
+## Endpoints
+
+#### Healthy
+- **Healthy**
+  - **Método**: `GET`
+  - **URL**: `localhost:4000/healthy`
+
+#### Auth
+- **Registro**
+  - **Método**: `POST`
+  - **URL**: `localhost:4000/api/v1/users/register`
+  - **Autenticación**: No requiere
+  - **Cuerpo**: `{ "email": "admin@admin.com", "password": "12345678" }`
+- **Inicio de sesión**
+  - **Método**: `POST`
+  - **URL**: `localhost:4000/api/v1/users/login`
+  - **Autenticación**: No requiere
+  - **Cuerpo**: `{ "email": "user@user.com", "password": "12345678" }`
+
+## Users
+- **Obtener todos los usuarios (admin)**
+  - **Método**: `GET`
+  - **URL**: `localhost:4000/api/v1/users`
+  - **Autenticación**: Bearer Token
+- **Obtener perfil de usuario**
+  - **Método**: `GET`
+  - **URL**: `localhost:4000/api/v1/users/profile`
+  - **Autenticación**: Bearer Token
+- **Obtener usuario por correo (admin)**
+  - **Método**: `GET`
+  - **URL**: `localhost:4000/api/v1/users/filter`
+  - **Params**: `?email=email@email`
+  - **Autenticación**: Bearer Token (role admin)
+- **Actualizar usuario**
+  - **Método**: `PUT`
+  - **URL**: `localhost:4000/api/v1/users/profile`
+  - **Autenticación**: Bearer Token
+  - **Cuerpo**: `{ "name": "user", "email": "user@user.com", "password": "12345678" }`
+- **Actualizar rol por ID (admin)**
+  - **Método**: `PUT`
+  - **URL**: `localhost:4000/api/v1/users/:userId/role`
+  - **Autenticación**: Bearer Token (role admin)
+  - **Cuerpo**: `{ "roles": "user" }`
+- **Eliminar usuario por ID (admin)**
+  - **Método**: `DELETE`
+  - **URL**: `localhost:4000/api/v1/users/:userId`
+  - **Autenticación**: Bearer Token (role admin)
+- **Seguir y dejar de seguir usuarios**
+  - **Método**: `PUT`
+  - **URL**: `localhost:4000/api/v1/users/follow/:userId`
+  - **Autenticación**: Bearer Token
+
+## Posts
+- **Crear post**
+  - **Método**: `POST`
+  - **URL**: `localhost:4000/api/v1/posts`
+  - **Autenticación**: Bearer Token
+  - **Cuerpo**: `{ "message": "Mensaje del post" }`
+- **Eliminar post por ID**
+  - **Método**: `DELETE`
+  - **URL**: `localhost:4000/api/v1/posts/:postId`
+  - **Autenticación**: Bearer Token
+- **Actualizar post por ID**
+  - **Método**: `PUT`
+  - **URL**: `localhost:4000/api/v1/posts/:postId`
+  - **Autenticación**: Bearer Token
+  - **Cuerpo**: `{ "message": "Mensaje actualizado" }`
+- **Obtener posts del usuario**
+  - **Método**: `GET`
+  - **URL**: `localhost:4000/api/v1/posts/own`
+  - **Autenticación**: Bearer Token
+- **Obtener todos los posts**
+  - **Método**: `GET`
+  - **URL**: `localhost:4000/api/v1/posts`
+  - **Autenticación**: No requiere
+- **Obtener post por ID**
+  - **Método**: `GET`
+  - **URL**: `localhost:4000/api/v1/posts/:postId`
+  - **Autenticación**: No requiere
+- **Obtener posts por ID de usuario**
+  - **Método**: `GET`
+  - **URL**: `localhost:4000/api/v1/users/posts/:userId`
+  - **Autenticación**: No requiere
+- **Dar me gusta/no me gusta a un post por ID**
+  - **Método**: `PUT`
+  - **URL**: `localhost:4000/api/v1/posts/like/:postId`
+  - **Autenticación**: Bearer Token
+- **Obtener posts del timeline de seguidores**
+  - **Método**: `GET`
+  - **URL**: `localhost:4000/api/v1/posts/timeline`
+  - **Autenticación**: Bearer Token
+
+## Comments
+- **Crear nuevo comentario**
+  - **Método**: `POST`
+  - **URL**: `localhost:4000/api/v1/comments/:postId`
+  - **Autenticación**: Bearer Token
+  - **Cuerpo**: `{ "comment": "Comentario" }`
+- **Eliminar comentario por ID**
+  - **Método**: `DELETE`
+  - **URL**: `localhost:4000/api/v1/comments/:commentId`
+  - **Autenticación**: Bearer Token
+- **Actualizar comentario por ID**
+  - **Método**: `PUT`
+  - **URL**: `localhost:4000/api/v1/comments/:commentId`
+  - **Autenticación**: Bearer Token
+  - **Cuerpo**: `{ "comment": "Comentario actualizado" }`
+- **Obtener todos los comentarios por ID de post**
+  - **Método**: `GET`
+  - **URL**: `localhost:4000/api/v1/posts/:postId/comments`
+  - **Autenticación**: No requiere
+- **Obtener comentario por ID**
+  - **Método**: `GET`
+  - **URL**: `localhost:4000/api/v1/comments/:commentId`
+  - **Autenticación**: No requiere
