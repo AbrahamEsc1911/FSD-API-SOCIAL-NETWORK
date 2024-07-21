@@ -72,6 +72,9 @@ You can access the deployment of this API at:
     <a href="https://tattoostudio.zeabur.app"><strong>Production URL</strong></a>
 </div>
 
+## Diagrama BD :zap:
+!['imagen-db'](./images/db%20architecture.svg)
+
 ## Installation
 1. Clone the repository
    ```bash
@@ -297,15 +300,12 @@ You can do it in two ways:
     - Create a new branch  
         ```bash
          git checkout -b feature/username-improvement
-        ```
     - Commit your changes 
         ```bash
          git commit -m 'feat: improve X thing'
-        ```
     - Push to the branch 
         ```bash
          git push origin feature/username-improvement
-        ```
     - Open a Pull Request
 
 ## Author 
@@ -317,4 +317,4 @@ You can do it in two ways:
 <a href="https://www.linkedin.com/in/abraham-escobar-angola-237a20224/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
 </p>
 
-!['banner'](./images/banner.svg)
+!['banner'](./images/banner1.svg)
