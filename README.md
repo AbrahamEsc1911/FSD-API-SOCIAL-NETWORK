@@ -69,7 +69,7 @@ Technologies used for the development of this project:
 ## Deploy  
 You can access the deployment of this API at:
 <div>
-    <a href="https://tattoostudio.zeabur.app"><strong>Production URL</strong></a>
+    <a href="https://socialnetwork.zeabur.app"><strong>Production URL</strong></a>
 </div>
 
 ## Diagrama BD :zap:
