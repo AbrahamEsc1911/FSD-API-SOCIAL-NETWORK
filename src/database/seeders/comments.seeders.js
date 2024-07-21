@@ -68,4 +68,4 @@ export const commentsSeeders = async () => {
     }
 }
 
-commentsSeeders()
+// commentsSeeders()

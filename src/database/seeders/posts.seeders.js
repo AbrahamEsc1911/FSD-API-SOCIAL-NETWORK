@@ -117,4 +117,4 @@ export const postsSeeders = async () => {
     }
 }
 
-postsSeeders()
+// postsSeeders()
