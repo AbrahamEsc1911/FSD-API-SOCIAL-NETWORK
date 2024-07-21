@@ -1,11 +1,8 @@
 import 'dotenv/config';
-import mongoose from "mongoose"
 import Posts from "../../entities/posts/posts.model.js"
 
 export const postsSeeders = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI, {})
-
         const posts = [
             {
                 _id: '669bd63f721191eae6091056',
@@ -112,9 +109,5 @@ export const postsSeeders = async () => {
         console.log('_________________')
         console.log(error)
         console.log('_________________')
-    } finally {
-        await mongoose.connection.close()
     }
 }
-
-// postsSeeders()

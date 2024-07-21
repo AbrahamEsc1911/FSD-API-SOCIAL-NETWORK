@@ -4,19 +4,6 @@ import { usersSeaders } from "./users.seeders.js"
 import { commentsSeeders } from './comments.seeders.js';
 import mongoose from 'mongoose';
 
-// async () => {
-//     // await mongoose.connect(process.env.MONGO_URI, {})
-
-//     console.log(1)
-//     await usersSeaders()
-//     await postsSeeders()
-//     await commentsSeeders()
-//     console.log('seeders done')
-//     console.log('________________')
-
-//     // await mongoose.connection.close()
-// }, ()
-
 await mongoose.connect(process.env.MONGO_URI, {})
     .then(() => {
         console.log('DataBase Connected')
@@ -34,6 +21,9 @@ const runSeeders = async () => {
         await commentsSeeders()
         console.log('================')
         console.log('seeders done')
+
+        mongoose.connection.close()
+        console.log('Connection closed')
     } catch (error) {
 
     }

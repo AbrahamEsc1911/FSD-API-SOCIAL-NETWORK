@@ -1,11 +1,8 @@
 import 'dotenv/config';
-import mongoose from "mongoose"
 import Comments from "../../entities/comments/comments.model.js"
 
 export const commentsSeeders = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI, {})
-
         const comments = [
             {
                 _id: '669bd63f721191eae6091064',
@@ -63,9 +60,5 @@ export const commentsSeeders = async () => {
         console.log('____________________')
         console.log(error)
         console.log('____________________')
-    } finally {
-        await mongoose.connection.close()
     }
 }
-
-// commentsSeeders()

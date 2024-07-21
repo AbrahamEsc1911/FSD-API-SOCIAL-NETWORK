@@ -1,12 +1,9 @@
 import 'dotenv/config';
 import bcrypt from 'bcrypt'
-import mongoose from "mongoose"
 import Users from '../../entities/users/users.model.js';
 
 export const usersSeaders = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI, {})
-
         const users = [
             {
                 _id: '669bd63f721191eae6091050',
@@ -86,11 +83,5 @@ export const usersSeaders = async () => {
         console.log('___________________')
         console.log(error)
         console.log('___________________')
-
-    } finally {
-        await mongoose.connection.close();
-
     }
 }
-
-// usersSeaders()
