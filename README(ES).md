@@ -1,12 +1,14 @@
 !['banner'](./images/oc%20social%20network.svg)
 
-<details>
-  <summary>Contenido 📝</summary>
+
+## Red Social (Ocean)
+Se realiza este proyecto con el objetivo de dar cumplimiento al temario del Bootcamp Full Stack Developer de [@GeeksHubsAcademy](https://github.com/GeeksHubsAcademy). Este proyecto implica el desarrollo de una API funcional conectada a una base de datos no relacional, donde los usuarios se pueden dar de alta, interactuar con otros usuarios a traves de publicaciones o comentarios, dar me gusta las publicaciones y tambien pueden seguir de dejar de seguir usuarios para ver o no sus publicaciones. 
+
+## Contenido
   <ol>
-    <li><a href="####Social Network">Social Network</a></li>
     <li><a href="#sobre-el-proyecto">Sobre el proyecto</a></li>
     <li><a href="#stack">Stack</a></li>
-    <li><a href="#deploy-🚀">Deploy</a></li>
+    <li><a href="#deploy">Deploy</a></li>
     <li><a href="#diagrama-bd">Diagrama</a></li>
     <li><a href="#instalación-en-local">Instalación</a></li>
     <li><a href="#endpoints">Endpoints</a></li>
@@ -14,10 +16,6 @@
     <li><a href="#contribuciones">Contribuciones</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ol>
-</details>
-
-## Red Scial (Ocean)
-Se realiza este proyecto con el objetivo de dar cumplimiento al temario del Bootcamp Full Stack Developer de [@GeeksHubsAcademy](https://github.com/GeeksHubsAcademy). Este proyecto implica el desarrollo de una API funcional conectada a una base de datos no relacional, donde los usuarios se pueden dar de alta, interactuar con otros usuarios a traves de publicaciones o comentarios, dar me gusta las publicaciones y tambien pueden seguir de dejar de seguir usuarios para ver o no sus publicaciones. 
 
 ## Sobre el proyecto
 API RESTful que interactúa con una base de datos no relacional, específicamente MongoDB. La API está implementada utilizando Node.js como entorno de ejecución y Mongoose como la librería de modelado de datos de MongoDB para Node.js.
@@ -329,3 +327,5 @@ My name is Abraham Escobar, I am a graphic designer and a full-stack developer i
 <a href = "mailto:abrancho1908@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
 <a href="https://www.linkedin.com/in/abraham-escobar-angola-237a20224/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
 </p>
+
+!['banner'](./images/banner.svg)
