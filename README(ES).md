@@ -91,7 +91,7 @@ Puedes acceder al deploy de esta API en:
 - `MONGO_URI` el URI de MongoDB para la conexión a la base de datos
 - `SALT_ROUNDS` es la cantidad de vueltas que utiliza Bcrypt para encriptar las contraseñas
 - `SECRET_KEY` palabra secreta que usa JSON Web Token para la creación de los tokens
-3. Levantar base de datos MongoDB y conectarla con la API
+4. Levantar base de datos MongoDB y conectarla con la API
 - <details>
   <summary>(Opcional) Pasos para configurar y ejecutar MongoDB en Docker</summary>
 
@@ -121,11 +121,11 @@ Puedes acceder al deploy de esta API en:
      ```
 </details>
 
-4. Ejecutar los seeders para sembrar los multiples colleciones y documentos en la Base de Dados
+5. Ejecutar los seeders para sembrar los multiples colleciones y documentos en la Base de Dados
    ```bash
     npm run db:seed 
     ```
-5. Correr el servidor
+6. Correr el servidor
    ```bash
    npm run dev
    ``` 
@@ -317,4 +317,15 @@ Puedes hacerlo de dos maneras:
         ```
     - Abre una solicitud de Pull Request
 
-    
+## Author 
+
+- [@AbrahamEsc1911](https://github.com/AbrahamEsc1911)
+
+
+##  About Me
+My name is Abraham Escobar, I am a graphic designer and a full-stack developer in progress. I am passionate about learning, curious, and very interested in the impact of technology on human beings and how it can contribute to solving both simple and complex problems in our existence.
+
+ ## Contacto 
+<a href = "mailto:abrancho1908@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
+<a href="https://www.linkedin.com/in/abraham-escobar-angola-237a20224/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+</p>
