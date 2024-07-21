@@ -37,3 +37,32 @@ Librería de modelado de datos que se utiliza para definir esquemas, validar dat
 Base de datos NoSQL utilizada para el almacenamiento de datos, seleccionada por su flexibilidad en la gestión de datos no estructurados y su capacidad de escalabilidad horizontal.
 
 Esta combinación de tecnologías permite construir una API robusta y escalable, adecuada para aplicaciones modernas que requieren la gestión eficiente de grandes volúmenes de datos no estructurados.
+
+## Stack
+Tecnologias utilizadas para el desarrollo de este proyecto: 
+
+<a href="https://nodejs.org/es/">
+    <img src= "https://img.shields.io/badge/node.js-026E00?style=for-the-badge&logo=node.js&logoColor=white"/>
+</a>
+<a href="https://developer.mozilla.org/es/docs/Web/JavaScript">
+    <img src= "https://img.shields.io/badge/javascipt-EFD81D?style=for-the-badge&logo=javascript&logoColor=black"/>
+</a>
+<a href="https://www.mongodb.com/es">
+    <img src= "https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white"/>
+</a>
+<a href="https://expressjs.com/">
+    <img src= "https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB"/>
+</a>
+<a href="https://mongoosejs.com/">
+    <img src= "https://img.shields.io/badge/MONGOOSE-url?style=for-the-badge&logo=MONGOOSE&color=%23880000
+    "/>
+</a>
+<a href="https://www.github.com/">
+    <img src= "https://img.shields.io/badge/github-24292F?style=for-the-badge&logo=github&logoColor=white"/>
+</a>
+<a href="https://git-scm.com/">
+    <img src= "https://img.shields.io/badge/git-F54D27?style=for-the-badge&logo=git&logoColor=white"/>
+</a>
+<a href="https://jwt.io/">
+    <img src= "https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens"/>
+</a>
