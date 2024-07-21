@@ -131,76 +131,107 @@ Puedes acceder al deploy de esta API en:
    ``` 
 
 ## Endpoints
+<details>
+<summary><strong>Healthy</strong></summary>
 
-#### Healthy
 - **Healthy**
   - **Método**: `GET`
   - **URL**: `localhost:4000/healthy`
 
-#### Auth
+</details>
+
+<details>
+<summary><strong>Auth</strong></summary>
+
 - **Registro**
   - **Método**: `POST`
   - **URL**: `localhost:4000/api/v1/users/register`
   - **Autenticación**: No requiere
-  - **Cuerpo**: `{ "email": "admin@admin.com", "password": "12345678" }`
+  - **Cuerpo**: 
+    ```js
+    { "email": "admin@admin.com", "password": "12345678" }
+    ```
 - **Inicio de sesión**
   - **Método**: `POST`
   - **URL**: `localhost:4000/api/v1/users/login`
   - **Autenticación**: No requiere
-  - **Cuerpo**: `{ "email": "user@user.com", "password": "12345678" }`
+  - **Cuerpo**: 
+    ```js
+    { "email": "user@user.com", "password": "12345678" }
+    ```
 
-## Users
+</details>
+
+<details>
+<summary><strong>Users</strong></summary>
+
 - **Obtener todos los usuarios (admin)**
   - **Método**: `GET`
   - **URL**: `localhost:4000/api/v1/users`
-  - **Autenticación**: Bearer Token
+  - **Autenticación**: `Bearer Token`
 - **Obtener perfil de usuario**
   - **Método**: `GET`
   - **URL**: `localhost:4000/api/v1/users/profile`
-  - **Autenticación**: Bearer Token
+  - **Autenticación**: `Bearer Token`
 - **Obtener usuario por correo (admin)**
   - **Método**: `GET`
   - **URL**: `localhost:4000/api/v1/users/filter`
   - **Params**: `?email=email@email`
-  - **Autenticación**: Bearer Token (role admin)
+  - **Autenticación**: `Bearer Token` (role admin)
 - **Actualizar usuario**
   - **Método**: `PUT`
   - **URL**: `localhost:4000/api/v1/users/profile`
-  - **Autenticación**: Bearer Token
-  - **Cuerpo**: `{ "name": "user", "email": "user@user.com", "password": "12345678" }`
+  - **Autenticación**: `Bearer Token`
+  - **Cuerpo**: 
+    ```js
+    { "name": "user", "email": "user@user.com", "password": "12345678" }
+    ```
 - **Actualizar rol por ID (admin)**
   - **Método**: `PUT`
   - **URL**: `localhost:4000/api/v1/users/:userId/role`
-  - **Autenticación**: Bearer Token (role admin)
-  - **Cuerpo**: `{ "roles": "user" }`
+  - **Autenticación**: `Bearer Token` (role admin)
+  - **Cuerpo**: 
+    ```js
+    { "roles": "user" }
+    ```
 - **Eliminar usuario por ID (admin)**
   - **Método**: `DELETE`
   - **URL**: `localhost:4000/api/v1/users/:userId`
-  - **Autenticación**: Bearer Token (role admin)
+  - **Autenticación**: `Bearer Token` (role admin)
 - **Seguir y dejar de seguir usuarios**
   - **Método**: `PUT`
   - **URL**: `localhost:4000/api/v1/users/follow/:userId`
-  - **Autenticación**: Bearer Token
+  - **Autenticación**: `Bearer Token`
 
-## Posts
+</details>
+
+<details>
+<summary><strong>Posts</strong></summary>
+
 - **Crear post**
   - **Método**: `POST`
   - **URL**: `localhost:4000/api/v1/posts`
-  - **Autenticación**: Bearer Token
-  - **Cuerpo**: `{ "message": "Mensaje del post" }`
+  - **Autenticación**: `Bearer Token`
+  - **Cuerpo**: 
+    ```js
+    { "message": "Mensaje del post" }
+    ```
 - **Eliminar post por ID**
   - **Método**: `DELETE`
   - **URL**: `localhost:4000/api/v1/posts/:postId`
-  - **Autenticación**: Bearer Token
+  - **Autenticación**: `Bearer Token`
 - **Actualizar post por ID**
   - **Método**: `PUT`
   - **URL**: `localhost:4000/api/v1/posts/:postId`
-  - **Autenticación**: Bearer Token
-  - **Cuerpo**: `{ "message": "Mensaje actualizado" }`
+  - **Autenticación**: `Bearer Token`
+  - **Cuerpo**: 
+    ```js
+    { "message": "Mensaje actualizado" }
+    ```
 - **Obtener posts del usuario**
   - **Método**: `GET`
   - **URL**: `localhost:4000/api/v1/posts/own`
-  - **Autenticación**: Bearer Token
+  - **Autenticación**: `Bearer Token`
 - **Obtener todos los posts**
   - **Método**: `GET`
   - **URL**: `localhost:4000/api/v1/posts`
@@ -216,27 +247,37 @@ Puedes acceder al deploy de esta API en:
 - **Dar me gusta/no me gusta a un post por ID**
   - **Método**: `PUT`
   - **URL**: `localhost:4000/api/v1/posts/like/:postId`
-  - **Autenticación**: Bearer Token
+  - **Autenticación**: `Bearer Token`
 - **Obtener posts del timeline de seguidores**
   - **Método**: `GET`
   - **URL**: `localhost:4000/api/v1/posts/timeline`
-  - **Autenticación**: Bearer Token
+  - **Autenticación**: `Bearer Token`
 
-## Comments
+</details>
+
+<details>
+<summary><strong>Comments</strong></summary>
+
 - **Crear nuevo comentario**
   - **Método**: `POST`
   - **URL**: `localhost:4000/api/v1/comments/:postId`
-  - **Autenticación**: Bearer Token
-  - **Cuerpo**: `{ "comment": "Comentario" }`
+  - **Autenticación**: `Bearer Token`
+  - **Cuerpo**: 
+    ```js
+    { "comment": "Comentario" }
+    ```
 - **Eliminar comentario por ID**
   - **Método**: `DELETE`
   - **URL**: `localhost:4000/api/v1/comments/:commentId`
-  - **Autenticación**: Bearer Token
+  - **Autenticación**: `Bearer Token`
 - **Actualizar comentario por ID**
   - **Método**: `PUT`
   - **URL**: `localhost:4000/api/v1/comments/:commentId`
-  - **Autenticación**: Bearer Token
-  - **Cuerpo**: `{ "comment": "Comentario actualizado" }`
+  - **Autenticación**: `Bearer Token`
+  - **Cuerpo**: 
+    ```js
+    { "comment": "Comentario actualizado" }
+    ```
 - **Obtener todos los comentarios por ID de post**
   - **Método**: `GET`
   - **URL**: `localhost:4000/api/v1/posts/:postId/comments`
@@ -245,3 +286,35 @@ Puedes acceder al deploy de esta API en:
   - **Método**: `GET`
   - **URL**: `localhost:4000/api/v1/comments/:commentId`
   - **Autenticación**: No requiere
+
+</details>
+
+
+
+## Futuras funcionalidades 	
+- Permir a los usuarios dar me gusta a los comentarios.
+- En las publicaciones incluir tambien la posibilidad de agregar imagenes, u otro tipo de archivo para enriquecere mas el contenido.
+- permitir al usuario asignarse un avatar tipo imagen de perfil
+
+## Contribuciones 
+Las sugerencias y aportaciones son siempre bienvenidas.  
+
+Puedes hacerlo de dos maneras:
+
+1. Abriendo una issue
+2. Crea un fork del repositorio
+    - Crea una nueva rama  
+        ```bash
+         git checkout -b feature/nombreUsuario-mejora
+        ```
+    - Haz un commit con tus cambios 
+        ```bash
+         git commit -m 'feat: mejora X cosa'
+        ```
+    - Haz push a la rama 
+        ```bash
+         git push origin feature/nombreUsuario-mejora
+        ```
+    - Abre una solicitud de Pull Request
+
+    
