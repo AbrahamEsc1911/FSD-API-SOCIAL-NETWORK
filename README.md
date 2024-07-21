@@ -11,7 +11,7 @@ This project is carried out to fulfill the syllabus of the Full Stack Developer 
     <li><a href="#database-diagram">Diagram</a></li>
     <li><a href="#installation">Installation</a></li>
     <li><a href="#endpoints">Endpoints</a></li>
-    <li><a href="#future-functionalities">Future Functionalities</a></li>
+    <li><a href="#future-features">Future Functionalities</a></li>
     <li><a href="#contributions">Contributions</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -282,7 +282,7 @@ You can access the deployment of this API at:
 
 </details>
 
-## Future functionalities
+## Future Features
 - Allow users to like comments.
 - Include the possibility of adding images or other types of files in posts to enrich the content.
 - Allow users to set a profile picture avatar.
