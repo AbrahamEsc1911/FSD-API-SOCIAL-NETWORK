@@ -147,7 +147,7 @@ export const deleteComment = async (req, res) => {
                 }
             )
         }
-
+    
         const user = await Users.findById(id)
 
         if (!user.comments.includes(commentId)) {

@@ -62,6 +62,17 @@ export const deletePost = async (req, res) => {
             )
         }
 
+        const user = await Users.findById(id)
+
+        if(!user.posts.includes(postId)){
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: 'This post is not yours or doesnt exists'
+                }
+            )
+        }
+
         const postDeleted = await Posts.deleteOne(
             {
                 _id: postId
