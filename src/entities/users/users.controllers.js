@@ -39,7 +39,7 @@ export const register = async (req, res) => {
             {
                 success: true,
                 message: 'New user',
-                data: newUser
+                data: newUser.email
             }
         )
 
