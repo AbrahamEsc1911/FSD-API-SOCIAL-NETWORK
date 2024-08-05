@@ -99,10 +99,7 @@ export const login = async (req, res) => {
                 role: user.roles,
                 email: user.email
             },
-            process.env.SECRET_KEY,
-            {
-                expiresIn: '3h'
-            }
+            process.env.SECRET_KEY
         )
 
         res.json(
@@ -150,7 +147,7 @@ export const userProfile = async (req, res) => {
     try {
         const id = req.tokenData.id
 
-        const user = await Users.findOne({ _id: id }).select('_id name email is_active createdAt')
+        const user = await Users.findOne({ _id: id }).select('_id name email is_active createdAt followers posts').populate("posts", "post_message updatedAt likes comments")
 
         res.json(
             {
