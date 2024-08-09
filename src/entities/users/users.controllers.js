@@ -147,7 +147,9 @@ export const userProfile = async (req, res) => {
     try {
         const id = req.tokenData.id
 
-        const user = await Users.findOne({ _id: id }).select('_id name email is_active createdAt followers posts').populate("posts", "post_message updatedAt likes comments")
+        const user = await Users.findOne({ _id: id })
+            .select('_id profile name email is_active createdAt followers posts')
+            .populate("posts", "post_message createdAt updatedAt likes comments")
 
         res.json(
             {
