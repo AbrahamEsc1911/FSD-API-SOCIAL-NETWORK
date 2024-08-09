@@ -529,3 +529,50 @@ export const followUnfollow = async (req, res) => {
         )
     }
 }
+
+export const getUserById = async (req, res) => {
+    try {
+
+        const userId = req.params.id
+
+        if (!isValidObjectId(userId)) {
+            return res.status(400).json(
+                {
+                    succes: false,
+                    message: 'User id is not valid'
+                }
+            )
+        }
+
+        const user = await Users.findById(userId)
+            .select('name email following followers profile posts')
+            .populate('posts', 'post_message comments likes user')
+
+        if (!user) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: 'User not found'
+                }
+            )
+        }
+
+        res.json(
+            {
+                success: true,
+                message: 'User retrived',
+                data: user
+            }
+        )
+
+    } catch (error) {
+        res.status(500).json(
+            {
+                success: false,
+                message: 'error retriving user by id',
+                error: error.message
+            }
+        )
+    }
+
+}

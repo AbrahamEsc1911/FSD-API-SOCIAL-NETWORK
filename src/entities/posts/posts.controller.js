@@ -383,7 +383,7 @@ export const timelineUsers = async (req, res) => {
         res.json(
             {
                 succes: true,
-                message: 'Timeline of your followers',
+                message: 'Timeline of your followings',
                 data: posts
             }
         )
