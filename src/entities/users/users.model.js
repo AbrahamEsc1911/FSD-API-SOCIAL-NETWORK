@@ -41,6 +41,12 @@ const UserSchema = new Schema(
                 ref: 'Users'
             }
         ],
+        following: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Users'
+            }
+        ],
         comments: [
             {
                 type: Schema.Types.ObjectId,

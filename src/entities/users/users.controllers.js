@@ -453,6 +453,8 @@ export const followUnfollow = async (req, res) => {
         const user = await Users.findById(userId)
             .select('_id name email followers')
 
+        const miProfile = await Users.findById(id)
+
         if (!user) {
             return res.status(404).json(
                 {
@@ -473,7 +475,9 @@ export const followUnfollow = async (req, res) => {
 
         if (!user.followers.includes(id)) {
             user.followers.push(id)
+            miProfile.following.push(userId)
             await user.save()
+            await miProfile.save()
 
             return res.json(
                 {
@@ -489,6 +493,17 @@ export const followUnfollow = async (req, res) => {
             {
                 $pull: {
                     followers: id
+                }
+            },
+            {
+                new: true,
+            }
+        )
+        await Users.findByIdAndUpdate(
+            id,
+            {
+                $pull: {
+                    following: userId
                 }
             },
             {
