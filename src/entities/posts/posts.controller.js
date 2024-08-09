@@ -257,8 +257,8 @@ export const getPostById = async (req, res) => {
 
         const post = await Posts.findById(postId)
             .select('post_message createdAt')
-            .populate('user', 'name email')
-            .populate('comments', 'message createdAt')
+            .populate('user', 'name profile email')
+            .populate({path:'comments', select: 'message createdAt user', populate: {path: 'user', select:'profile name'}})
             .populate('likes', 'name email')
 
         if (!post) {
