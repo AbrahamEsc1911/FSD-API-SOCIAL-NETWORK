@@ -64,7 +64,7 @@ export const deletePost = async (req, res) => {
 
         const user = await Users.findById(id)
 
-        if(!user.posts.includes(postId)){
+        if (!user.posts.includes(postId)) {
             return res.status(404).json(
                 {
                     success: false,
@@ -258,8 +258,8 @@ export const getPostById = async (req, res) => {
         const post = await Posts.findById(postId)
             .select('post_message createdAt likes')
             .populate('user', 'name profile email')
-            .populate({path:'comments', select: 'message createdAt user', populate: {path: 'user', select:'profile name'}})
-      
+            .populate({ path: 'comments', select: 'message createdAt user', populate: { path: 'user', select: 'profile name' } })
+
 
         if (!post) {
             return res.status(404).json(
@@ -362,24 +362,29 @@ export const timelineUsers = async (req, res) => {
     try {
         const id = req.tokenData.id
 
-        const followersPosts = await Users.findById(id)
-            .select('name email followers')
-            .populate(
+        const user = await Users.findById(id).select('following')
+        
+        if (!user) {
+            return res.status(404).json(
                 {
-                    path: 'followers',
-                    select: 'name email',
-                    populate: {
-                        path: 'posts',
-                        select: 'post_message comments likes createdAt'
-                    }
+                    message: 'User not found'
                 }
-            )
+            );
+        }
+
+        const posts = await Posts.find(
+            {
+                user: {
+                    $in: user.following
+                }
+            }
+        ).populate('user', 'profile name')
 
         res.json(
             {
                 succes: true,
                 message: 'Timeline of your followers',
-                data: followersPosts
+                data: posts
             }
         )
 
