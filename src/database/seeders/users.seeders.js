@@ -13,6 +13,7 @@ export const usersSeaders = async () => {
                 roles: 'admin',
                 posts: ['669bd63f721191eae6091056', '669bd63f721191eae6091057', '669bd63f721191eae6091058'],
                 followers: ['669bd63f721191eae6091051'],
+                following: ['669bd63f721191eae6091051', '669bd63f721191eae6091052', '669bd63f721191eae6091053'],
                 comments: ['669bd63f721191eae6091064', '669bd63f721191eae6091066']
             },
             {
@@ -23,6 +24,7 @@ export const usersSeaders = async () => {
                 roles: 'user',
                 posts: ['669bd63f721191eae6091059', '669bd63f721191eae609105a'],
                 followers: ['669bd63f721191eae6091050', '669bd63f721191eae6091053'],
+                following: ['669bd63f721191eae6091050', '669bd63f721191eae6091052', '669bd63f721191eae6091053'],
                 comments: ['669bd63f721191eae6091065']
             },
             {
@@ -33,6 +35,7 @@ export const usersSeaders = async () => {
                 roles: 'user',
                 posts: ['669bd63f721191eae609105b', '669bd63f721191eae609105c'],
                 followers: ['669bd63f721191eae6091050', '669bd63f721191eae6091053'],
+                following: ['669bd63f721191eae6091050', '669bd63f721191eae6091051', '669bd63f721191eae6091053'],
                 comments: ['669bd63f721191eae6091067']
             },
             {
@@ -43,6 +46,7 @@ export const usersSeaders = async () => {
                 roles: 'user',
                 posts: ['669bd63f721191eae609105d', '669bd63f721191eae609105e', '669bd63f721191eae609105f'],
                 followers: ['669bd63f721191eae6091050', '669bd63f721191eae6091052'],
+                following: ['669bd63f721191eae6091050', '669bd63f721191eae6091051', '669bd63f721191eae6091052', '669bd63f721191eae6091054'],
                 comments: ['669bd63f721191eae6091068']
             },
             {
@@ -53,6 +57,7 @@ export const usersSeaders = async () => {
                 roles: 'user',
                 posts: ['669bd63f721191eae6091060'],
                 followers: ['669bd63f721191eae6091050', '669bd63f721191eae6091052', '669bd63f721191eae6091053'],
+                following: ['669bd63f721191eae6091050', '669bd63f721191eae6091051', '669bd63f721191eae6091052', '669bd63f721191eae6091054'],
                 comments: ['669bd63f721191eae6091069']
             },
             {
@@ -63,6 +68,7 @@ export const usersSeaders = async () => {
                 roles: 'user',
                 posts: ['669bd63f721191eae6091061', '669bd63f721191eae6091062', '669bd63f721191eae6091063'],
                 followers: ['669bd63f721191eae6091050', '669bd63f721191eae6091052', '669bd63f721191eae6091053'],
+                following: ['669bd63f721191eae6091051', '669bd63f721191eae6091053', '669bd63f721191eae6091052', '669bd63f721191eae6091054'],
                 comments: ['669bd63f721191eae609106a']
             }
         ]
