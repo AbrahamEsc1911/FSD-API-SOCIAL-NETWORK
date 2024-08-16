@@ -123,7 +123,7 @@ export const login = async (req, res) => {
 export const getAllUsers = async (req, res) => {
     try {
 
-        const allUses = await Users.find().select('email name roles createdAt')
+        const allUses = await Users.find().select('email name profile followers following createdAt')
 
         res.json(
             {
@@ -148,7 +148,7 @@ export const userProfile = async (req, res) => {
         const id = req.tokenData.id
 
         const user = await Users.findOne({ _id: id })
-            .select('_id profile name email is_active createdAt followers posts')
+            .select('_id profile name email is_active createdAt followers posts following phone city born')
             .populate("posts", "post_message createdAt updatedAt likes comments")
 
         res.json(
@@ -207,7 +207,7 @@ export const getUserByEmail = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         const id = req.tokenData.id
-        const { name, email, password } = req.body
+        const { name, email, password, phone, city } = req.body
         let passhashed
 
         if ((password && password.length < 8) || (password && password.length > 12)) {
@@ -223,27 +223,34 @@ export const updateUser = async (req, res) => {
             passhashed = bcrypt.hashSync(password, parseInt(process.env.SALT_ROUNDS))
         }
 
-        const user = await Users.findOne(
-            {
-                _id: id
-            },
-        )
+        // const user = await Users.findOne(
+        //     {
+        //         _id: id
+        //     },
+        // )
 
-        if (user.name === name) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: `name '${name}' already exist`
-                }
-            )
-        } else if (user.email === email) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: `email '${email}' already exist`
-                }
-            )
-        }
+        // if (user.name === name) {
+        //     return res.status(400).json(
+        //         {
+        //             success: false,
+        //             message: `name '${name}' already exist`
+        //         }
+        //     )
+        // } else if (user.email === email) {
+        //     return res.status(400).json(
+        //         {
+        //             success: false,
+        //             message: `email '${email}' already exist`
+        //         }
+        //     )
+        // } else if (user.phone === phone) {
+        //     return res.status(400).json(
+        //         {
+        //             success: false,
+        //             message: `phone '${phone}' already exist` 
+        //         }
+        //     )
+        // }
 
         const userUpdated = await Users.updateOne(
             {
@@ -252,7 +259,9 @@ export const updateUser = async (req, res) => {
             {
                 name: name,
                 email: email,
-                password: passhashed
+                password: passhashed,
+                phone: phone,
+                city: city
             }
         )
 
@@ -545,7 +554,7 @@ export const getUserById = async (req, res) => {
         }
 
         const user = await Users.findById(userId)
-            .select('name email following followers profile posts')
+            .select('name email following followers profile posts phone city born')
             .populate('posts', 'post_message comments likes user')
 
         if (!user) {

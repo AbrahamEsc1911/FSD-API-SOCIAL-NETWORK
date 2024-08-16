@@ -7,7 +7,7 @@ const router = Router()
 
 router.post('/register', register)
 router.post('/login', login)
-router.get('/', auth, isAdmin, getAllUsers)
+router.get('/', auth, getAllUsers)
 router.get('/filter', auth, isAdmin, getUserByEmail)
 router.get('/profile', auth, userProfile)
 router.get('/profile/:id', getUserById)
