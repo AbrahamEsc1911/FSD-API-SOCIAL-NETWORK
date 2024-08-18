@@ -9,6 +9,7 @@ export const usersSeaders = async () => {
                 _id: '669bd63f721191eae6091050',
                 name: 'admin',
                 email: 'admin@admin.com',
+                profile: 'https://static1.bigstockphoto.com/1/7/2/large1500/27169880.jpg',
                 password: '12345678',
                 phone: '3456457898',
                 city: 'New York',
@@ -71,7 +72,7 @@ export const usersSeaders = async () => {
                 born: '18-09-1998',
                 roles: 'user',
                 posts: ['669bd63f721191eae6091060'],
-                followers: ['669bd63f721191eae6091050', '669bd63f721191eae6091052', '669bd63f721191eae6091053'],
+                followers: ['669bd63f721191eae6091052', '669bd63f721191eae6091053'],
                 following: ['669bd63f721191eae6091050', '669bd63f721191eae6091051', '669bd63f721191eae6091052', '669bd63f721191eae6091054'],
                 comments: ['669bd63f721191eae6091069']
             },
@@ -85,7 +86,7 @@ export const usersSeaders = async () => {
                 born: '18-09-1998',
                 roles: 'user',
                 posts: ['669bd63f721191eae6091061', '669bd63f721191eae6091062', '669bd63f721191eae6091063'],
-                followers: ['669bd63f721191eae6091050', '669bd63f721191eae6091052', '669bd63f721191eae6091053'],
+                followers: ['669bd63f721191eae6091052', '669bd63f721191eae6091053'],
                 following: ['669bd63f721191eae6091051', '669bd63f721191eae6091053', '669bd63f721191eae6091052', '669bd63f721191eae6091054'],
                 comments: ['669bd63f721191eae609106a']
             }

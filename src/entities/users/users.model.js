@@ -7,6 +7,11 @@ const UserSchema = new Schema(
             require: true,
             default: 'https://cdn.vectorstock.com/i/500p/53/42/user-member-avatar-face-profile-icon-vector-22965342.jpg'
         },
+        portada: {
+            type: String,
+            require: true,
+            default: './images/portada.jpg'
+        },
         name: {
             type: String,
             required: false,
