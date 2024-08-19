@@ -559,7 +559,11 @@ export const getUserById = async (req, res) => {
 
         const user = await Users.findById(userId)
             .select('name email following followers profile posts phone city born')
-            .populate('posts', 'post_message comments likes user')
+            .populate({
+                path: 'posts',
+                select: 'post_message comments likes user createdAt',
+                options: { sort : { createdAt: -1}}
+            })
 
         if (!user) {
             return res.status(404).json(
