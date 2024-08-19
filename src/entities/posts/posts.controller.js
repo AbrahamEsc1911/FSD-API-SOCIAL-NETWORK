@@ -186,7 +186,11 @@ export const getUserPosts = async (req, res) => {
 
         const userPosts = await Users.findById(id)
             .select('name email posts')
-            .populate('posts', 'post_message')
+            .populate({
+                path: 'posts',
+                select: 'post_message createdAt',
+                options: {sort: { createdAt: -1 }}
+            })
 
         res.json(
             {
@@ -212,6 +216,7 @@ export const getAllPosts = async (req, res) => {
         const allPosts = await Posts.find()
             .select('post_message createdAt')
             .populate('user', 'email')
+            .sort({ createdAt: -1 })
 
         if (!allPosts) {
             return res.status(404).json(
@@ -378,7 +383,9 @@ export const timelineUsers = async (req, res) => {
                     $in: user.following
                 }
             }
-        ).populate('user', 'profile name')
+        )
+        .populate('user', 'profile name')
+        .sort({ createdAt: -1 })
 
         res.json(
             {

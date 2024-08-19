@@ -149,7 +149,11 @@ export const userProfile = async (req, res) => {
 
         const user = await Users.findOne({ _id: id })
             .select('_id profile name email is_active createdAt followers posts following phone city born')
-            .populate("posts", "post_message createdAt updatedAt likes comments")
+            .populate({
+                path: "posts",
+                select: "post_message createdAt updatedAt likes comments",
+                options: {sort: { createdAt: -1 }}
+            })
 
         res.json(
             {
