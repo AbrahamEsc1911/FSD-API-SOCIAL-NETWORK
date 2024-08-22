@@ -7,7 +7,7 @@ export const usersSeaders = async () => {
         const users = [
             {
                 _id: '669bd63f721191eae6091050',
-                name: 'admin',
+                name: 'Admin',
                 email: 'admin@admin.com',
                 profile: './images/profile-1.jpg',
                 password: '12345678',
@@ -22,7 +22,7 @@ export const usersSeaders = async () => {
             },
             {
                 _id: '669bd63f721191eae6091051',
-                name: 'user',
+                name: 'User',
                 email: 'user@user.com',
                 profile: './images/profile-2.jpg',
                 password: '12345678',
@@ -52,7 +52,7 @@ export const usersSeaders = async () => {
             },
             {
                 _id: '669bd63f721191eae6091053',
-                name: 'peter holms',
+                name: 'Peter Holms',
                 email: 'pedro@pedro.com',
                 profile: './images/profile-4.jpg',
                 password: '12345678',
@@ -67,7 +67,7 @@ export const usersSeaders = async () => {
             },
             {
                 _id: '669bd63f721191eae6091054',
-                name: 'camila Worken',
+                name: 'Camila Worken',
                 email: 'camila@camila.com',
                 profile: './images/profile-6.jpg',
                 password: '12345678',
